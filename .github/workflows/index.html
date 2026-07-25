@@ -114,60 +114,6 @@
   </style>
 
   <script>
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioCtx = null;
-
-    function initAudio() {
-      if (!audioCtx) audioCtx = new AudioContext();
-    }
-
-    function playSound(type) {
-      try {
-        initAudio();
-        if (!audioCtx) return;
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        const now = audioCtx.currentTime;
-
-        if (type === 'click') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(450, now);
-          osc.frequency.exponentialRampToValueAtTime(900, now + 0.12);
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
-          osc.start(now);
-          osc.stop(now + 0.12);
-        } else if (type === 'back') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(650, now);
-          osc.frequency.exponentialRampToValueAtTime(320, now + 0.15);
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-          osc.start(now);
-          osc.stop(now + 0.15);
-        } else if (type === 'msg') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(800, now);
-          osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
-          gain.gain.setValueAtTime(0.1, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-          osc.start(now);
-          osc.stop(now + 0.1);
-        } else if (type === 'lock') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(220, now);
-          osc.frequency.setValueAtTime(160, now + 0.08);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
-          osc.start(now);
-          osc.stop(now + 0.2);
-        }
-      } catch (e) {}
-    }
-
     /* Firebase Realtime Chat Config (Public Endpoint for GitHub Pages Deployment) */
     const firebaseConfig = {
       databaseURL: "https://nps-portal-default-rtdb.firebaseio.com"
@@ -202,7 +148,7 @@
                   <div class="text-[10px] text-gray-300 font-body">Live updates from t.me/NPSAnnoucements</div>
                 </div>
               </div>
-              <a href="https://t.me/NPSAnnoucements" target="_blank" onclick="playSound('click')" class="w-full sm:w-auto text-center px-3 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg font-game text-xs transition-transform active:scale-95 flex items-center justify-center gap-1.5">
+              <a href="https://t.me/NPSAnnoucements" target="_blank" class="w-full sm:w-auto text-center px-3 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg font-game text-xs transition-transform active:scale-95 flex items-center justify-center gap-1.5">
                 <span>OPEN TELEGRAM</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
@@ -234,7 +180,7 @@
                 <p class="text-[11px] sm:text-xs text-gray-300 font-body mt-1">Get official Android APK files and update changelogs.</p>
               </div>
 
-              <a href="https://github.com/Nextstars1/Next-Private-Server/releases" target="_blank" onclick="playSound('click')" class="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-2.5 sm:py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-game text-xs sm:text-base rounded-2xl shadow-lg border-2 border-emerald-300/40 transition-transform hover:scale-105 active:scale-95 w-full sm:w-auto">
+              <a href="https://github.com/Nextstars1/Next-Private-Server/releases" target="_blank" class="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-2.5 sm:py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-game text-xs sm:text-base rounded-2xl shadow-lg border-2 border-emerald-300/40 transition-transform hover:scale-105 active:scale-95 w-full sm:w-auto">
                 <i class="fa-solid fa-download text-sm sm:text-xl"></i>
                 <span>GO TO GITHUB RELEASES</span>
                 <i class="fa-solid fa-external-link text-[10px] sm:text-xs opacity-75"></i>
@@ -302,7 +248,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
               
               <!-- YouTube -->
-              <a href="https://www.youtube.com/@NPSChannel1" target="_blank" onclick="playSound('click')" class="p-3 bg-gradient-to-br from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 rounded-xl border border-red-500/50 flex items-center justify-between group transition-transform hover:scale-105">
+              <a href="https://www.youtube.com/@NPSChannel1" target="_blank" class="p-3 bg-gradient-to-br from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 rounded-xl border border-red-500/50 flex items-center justify-between group transition-transform hover:scale-105">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl sm:text-2xl text-white">
                     <i class="fa-brands fa-youtube"></i>
@@ -316,7 +262,7 @@
               </a>
 
               <!-- Telegram Chat -->
-              <a href="https://t.me/NextPrivateServer" target="_blank" onclick="playSound('click')" class="p-3 bg-gradient-to-br from-sky-600 to-blue-800 hover:from-sky-500 hover:to-blue-700 rounded-xl border border-sky-400/50 flex items-center justify-between group transition-transform hover:scale-105">
+              <a href="https://t.me/NextPrivateServer" target="_blank" class="p-3 bg-gradient-to-br from-sky-600 to-blue-800 hover:from-sky-500 hover:to-blue-700 rounded-xl border border-sky-400/50 flex items-center justify-between group transition-transform hover:scale-105">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl sm:text-2xl text-white">
                     <i class="fa-brands fa-telegram"></i>
@@ -330,7 +276,7 @@
               </a>
 
               <!-- Telegram Announcements -->
-              <a href="https://t.me/NPSAnnoucements" target="_blank" onclick="playSound('click')" class="p-3 bg-gradient-to-br from-cyan-600 to-teal-800 hover:from-cyan-500 hover:to-teal-700 rounded-xl border border-cyan-400/50 flex items-center justify-between group transition-transform hover:scale-105">
+              <a href="https://t.me/NPSAnnoucements" target="_blank" class="p-3 bg-gradient-to-br from-cyan-600 to-teal-800 hover:from-cyan-500 hover:to-teal-700 rounded-xl border border-cyan-400/50 flex items-center justify-between group transition-transform hover:scale-105">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl sm:text-2xl text-white">
                     <i class="fa-solid fa-bullhorn"></i>
@@ -344,7 +290,7 @@
               </a>
 
               <!-- Discord Server -->
-              <a href="https://discord.gg/DGydEdnbF2" target="_blank" onclick="playSound('click')" class="p-3 bg-gradient-to-br from-indigo-600 to-purple-800 hover:from-indigo-500 hover:to-purple-700 rounded-xl border border-indigo-400/50 flex items-center justify-between group transition-transform hover:scale-105">
+              <a href="https://discord.gg/DGydEdnbF2" target="_blank" class="p-3 bg-gradient-to-br from-indigo-600 to-purple-800 hover:from-indigo-500 hover:to-purple-700 rounded-xl border border-indigo-400/50 flex items-center justify-between group transition-transform hover:scale-105">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl sm:text-2xl text-white">
                     <i class="fa-brands fa-discord"></i>
@@ -371,7 +317,6 @@
       const headerTitle = document.getElementById('headerTitle');
 
       if (sectionKey === 'comingsoon') {
-        playSound('lock');
         detailView.innerHTML = `
           <div class="text-center py-6 space-y-3">
             <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-amber-500/20 border-2 border-amber-500/40 mx-auto flex items-center justify-center text-amber-300 text-xl sm:text-2xl">
@@ -388,7 +333,6 @@
         `;
         headerTitle.innerText = "COMING SOON";
       } else {
-        playSound('click');
         const data = sectionsData[sectionKey];
         if (!data) return;
         headerTitle.innerText = data.title;
@@ -408,7 +352,6 @@
     }
 
     function showGridView() {
-      playSound('back');
       document.getElementById('gridView').classList.remove('hidden');
       document.getElementById('detailView').classList.add('hidden');
       document.getElementById('backBtn').classList.add('hidden');
@@ -479,7 +422,7 @@
                 ${photoUrl ? `<img src="${photoUrl}" class="w-full max-h-40 sm:max-h-48 object-cover rounded-lg border border-cyan-900/50" />` : ''}
                 <p class="text-xs text-gray-200 font-body leading-relaxed whitespace-pre-line">${text}</p>
                 <div class="pt-1 flex justify-end">
-                  <a href="https://t.me/NPSAnnoucements" target="_blank" onclick="playSound('click')" class="text-[11px] font-game text-cyan-300 hover:underline flex items-center gap-1">
+                  <a href="https://t.me/NPSAnnoucements" target="_blank" class="text-[11px] font-game text-cyan-300 hover:underline flex items-center gap-1">
                     <span>View Post</span>
                     <i class="fa-solid fa-arrow-right"></i>
                   </a>
@@ -505,7 +448,7 @@
           </div>
           <p class="text-xs text-gray-200 font-body leading-relaxed">${post.text}</p>
           <div class="pt-1 flex justify-end">
-            <a href="${post.link}" target="_blank" onclick="playSound('click')" class="text-[11px] font-game text-cyan-300 hover:underline flex items-center gap-1">
+            <a href="${post.link}" target="_blank" class="text-[11px] font-game text-cyan-300 hover:underline flex items-center gap-1">
               <span>View on Telegram</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -592,7 +535,6 @@
 
     function sendChatMessage(e) {
       e.preventDefault();
-      playSound('msg');
 
       const user = document.getElementById('chatUser').value.trim() || 'Player';
       const input = document.getElementById('chatInput');
@@ -728,7 +670,6 @@
     }
 
     function toggleCloseModal() {
-      playSound('click');
       const container = document.getElementById('mainContainer');
       const reopenBtn = document.getElementById('reopenBtn');
       const controls = document.getElementById('cameraControls');
